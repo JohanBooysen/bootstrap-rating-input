@@ -35,16 +35,24 @@
         //By Johan Booysen:
         //Get the possible classes, to filter out the "rating" class
         //This is to copy class specifications from the input to the glyph icon
-        var classList = $(element).attr('class').split(/\s+/);
         var classText = "";
-        $.each(classList, function(index, item){
-            if (item != 'rating') {
-               classText += ' ' + item;
-            }
-        });
-        //Get the style attribute
-        var style = $(element).attr('style');
+        classText = $(this[element]).attr('class');
+        if ((classText) && (classText != ""))
+        {
+            var classList = classText.split(/\s+/);
+            classText = "";
+            $.each(classList, function(index, item){
+                if (item != 'rating') {
+                   classText += ' ' + item;
+                }
+            });
+            //Get the style attribute    
+        } 
+        else classText = "";
+        
+        var style = $(this[element]).attr('style');
         if ((style) && (style != "")) style = ' style="'+style+'" ';
+        else style = "";
 
 
 
@@ -53,7 +61,6 @@
         max = originalInput.data('max') || 5,
         min = originalInput.data('min') || 0,
         clearable = originalInput.data('clearable') || null,
-        nohighlight = originalInput.data('nohighlight') || null,
         stars = '';
 
       // HTML element construction
